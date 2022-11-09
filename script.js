@@ -32,6 +32,10 @@ function thirdButton()
     {
         namn = namn + " XDDDD"
     } 
+    else if (namn=="jambal")
+    {
+        namn = namn + " gribenbergg"
+    }
     else 
     {
         console.log("okänt efternamn")
@@ -41,11 +45,12 @@ function thirdButton()
 
 function pTrainer()
 {
-    const minuter = document.querySelector("#minuter").value;
-    if (minuter == 20)
-    {
-        console.log("bra jobbat")
-    }
+    const minuter = Number(prompt("Hur många minuter har du motionerat idag?"))
+    console.log(minuter + " minuter")
+    if (minuter >= 20)
+{
+    alert("bra jobbat")
+}
 }
 
 
