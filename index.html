@@ -24,7 +24,35 @@
     <script src="script.js"></script>
 
     <script>
-        pTrainer();
+        
     </script>
+    <h2>Personal Trainer</h2>
+    <div>Hur länge har du motionerat idag?</div>
+    <input id="minutes" type="text" placeholder=""minuter>
+    <input id="buttonclick" type="button" value="OK" onclick="getPT()">
+    <p id="out"></p>
+
+    <script>
+        const minTime = 20;
+        const maxTime = 180;
+
+        function getPT()
+        {
+            let minuter = Number(document.querySelector('#minutes').value);
+            console.log(minuter + " minuter");
+            let outputText = "Bra jobbat"
+            if(minuter < minTime)
+            { 
+                outputText= `Försök träna mer än ${minTime} minuter`
+            }
+            else if (minuter > maxTime)
+            {
+                outputText= `Försök träna mindre än ${maxTime} minuter`
+            }
+            document.querySelector('#out').innerText = outputText;
+            
+        }
+    </script>
+
 </body>
 </html>

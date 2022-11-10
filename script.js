@@ -47,9 +47,13 @@ function pTrainer()
 {
     const minuter = Number(prompt("Hur många minuter har du motionerat idag?"))
     console.log(minuter + " minuter")
-    if (minuter >= 20)
+    if (minuter < 20 || minuter > 300)
 {
-    alert("bra jobbat")
+    alert(":-(")
+}
+else if (minuter >= 20)
+{
+    alert(":-)")
 }
 }
 
