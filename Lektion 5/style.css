@@ -1,0 +1,8 @@
+#colors li:nth-child(2)
+{
+    color:lime
+}
+#colors li
+{
+    cursor: pointer;
+}

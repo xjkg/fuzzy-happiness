@@ -1,34 +1,70 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lektion 2</title>
+    <title>Frontend</title>
 </head>
+
 <body>
-    
+
     <script>
         console.log("Hello from script tag")
     </script>
 
-    <h1>Lektion 2</h1>
+    <input id="input-seconds" type="number" placeholder="sekunder">
+    <p id="timer-output"></p>
+    <input id="btn-start" type="button" value="Start"> <br> <br>
+
+    <script>
+        console.log("Kitchen timer INIT")
+        const outputElem = document.querySelector('#timer-output');
+        let kitchenTimer = null
+
+        function timerHandler() {
+            if (kitchenTimer) clearInterval(kitchenTimer);
+
+            let secondsLeft = Number(document.querySelector("#input-seconds").value);
+
+            kitchenTimer = setInterval(function () 
+            {
+                outputElem.innerText = secondsLeft;
+                secondsLeft--;
+                console.log(secondsLeft)
+
+                if (secondsLeft <= 0) {
+                    clearInterval(kitchenTimer);
+                    outputElem.innerText = "Tiden är ute"
+                }
+            }, 1000);
+        }
+        //Pilfunktion (ersätter ordet function, på andra sidan parenteser, krävs inga bågparenteser)
+        document.querySelector('#btn-start').addEventListener('click', () => timerHandler());
+        //traditionell funktion
+        //document.querySelector('#btn-start').addEventListener('click', function () { timerHandler()});
+
+    </script>
+
+
+
 
     <button onclick="buttonHandler();">Button 1</button>
     <button onclick="secondButton();">Button 2</button>
     <br>
     <input id="namn"> <button onclick="thirdButton();">Button 3</button>
-    
+
     <div id="hello-output"></div>
 
     <script src="script.js"></script>
 
     <script>
-        
+
     </script>
     <h2>Personal Trainer</h2>
     <div>Hur länge har du motionerat idag?</div>
-    <input id="minutes" type="text" placeholder=""minuter>
+    <input id="minutes" type="text" placeholder="" minuter>
     <input id="buttonclick" type="button" value="OK" onclick="getPT()">
     <p id="out"></p>
 
@@ -37,34 +73,30 @@
         const minTime = 20;
         const maxTime = 180;
 
-        function getPT()
-        {
+        function getPT() {
             let minuter = Number(document.querySelector('#minutes').value);
             console.log(minuter + " minuter");
             let outputText = "Bra jobbat"
-            if(minuter < minTime)
-            { 
-                outputText= `Försök träna mer än ${minTime} minuter`
+            if (minuter < minTime) {
+                outputText = `Försök träna mer än ${minTime} minuter`
             }
-            else if (minuter > maxTime)
-            {
-                outputText= `Försök träna mindre än ${maxTime} minuter`
+            else if (minuter > maxTime) {
+                outputText = `Försök träna mindre än ${maxTime} minuter`
             }
             document.querySelector('#out').innerText = outputText;
         }
     </script>
     <script>
-        for (let i = 0; i<10; i++)
-        {
+        for (let i = 0; i < 10; i++) {
             console.log(i)
         }
-        myArr = [1,3,5,7,9];
-        for (let i = 0; i<10; i++)
-        {
+        myArr = [1, 3, 5, 7, 9];
+        for (let i = 0; i < 10; i++) {
             console.log(`${i}: ${myArr[i]}`);
         }
     </script>
 
 
 </body>
+
 </html>
