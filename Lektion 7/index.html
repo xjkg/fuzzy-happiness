@@ -47,6 +47,54 @@
 <div id="jack-img">
     <img  src="img/closed.png" data-open="img/open.png" data-closed="img/closed.png">
 </div>
+<input type="range" id="slider">
+<script>
+setTimeout(() => {openjackBox(); 
+    setTimeout(closejackBox(), 1000);
+}, 2000);
+</script>
+
+<p id="joke"></p>
+<hr>
+<p id="weather"></p>
+
+<script>
+        const jokeURL = "https://v2.jokeapi.dev/joke/Programming?format=txt&type=single&safe-mode"
+        
+        //Traditionellt .then syntax
+        fetch(jokeURL)
+            .then(resp => resp.text())
+            .then(function(respText){console.log(respText)})
+        
+        //async/await
+        async function getJoke(){
+            const resp = await fetch(jokeURL);
+            const joke = await resp.text();
+
+            document.querySelector("#joke").innerHTML = joke; 
+        }
+        getJoke();
+        
+    </script>
+
+    <script>
+        const weatherURL = "https://api.open-meteo.com/v1/forecast?latitude=60&longitude=25&current_weather=true&windspeed_unit=ms"
+        
+        fetch(weatherURL)
+            .then(resp => resp.text())
+            .then(function(respText){console.log(respText)})
+
+            fetch(weatherURL)
+            .then(resp => resp.json())
+            .then(function(respText){console.log(respText)})
+
+        async function getWeather(){
+            const resp = await fetch(weatherURL);
+            const joke = await resp.text();}
+        document.querySelector("#weather").innerHTML = weather; 
+    </script>
+
+
 
     <script src="jack.js"></script>
     <script src="lightbox.js"></script>
