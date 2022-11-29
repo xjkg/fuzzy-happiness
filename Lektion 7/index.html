@@ -56,8 +56,9 @@ setTimeout(() => {openjackBox();
 
 <p id="joke"></p>
 <hr>
-<p id="weather"></p>
-
+<div id="weather"></div><hr>
+<div id="Esbo"></div><hr>
+<div id="Barcelona"></div>
 <script>
         const jokeURL = "https://v2.jokeapi.dev/joke/Programming?format=txt&type=single&safe-mode"
         
@@ -78,20 +79,41 @@ setTimeout(() => {openjackBox();
     </script>
 
     <script>
-        const weatherURL = "https://api.open-meteo.com/v1/forecast?latitude=60&longitude=25&current_weather=true&windspeed_unit=ms"
-        
-        fetch(weatherURL)
-            .then(resp => resp.text())
-            .then(function(respText){console.log(respText)})
-
-            fetch(weatherURL)
-            .then(resp => resp.json())
-            .then(function(respText){console.log(respText)})
-
         async function getWeather(){
-            const resp = await fetch(weatherURL);
-            const joke = await resp.text();}
-        document.querySelector("#weather").innerHTML = weather; 
+            const resp = await fetch('https://api.open-meteo.com/v1/forecast?latitude=60&longitude=25&current_weather=true&windspeed_unit=ms')
+            const weather = await resp.json();
+            const curWeather = weather.current_weather;
+            console.log(weather)
+
+            document.querySelector('#weather').innerHTML = `
+            Det är ${curWeather.temperature}&deg;C och det blåser ${curWeather.windspeed} m/s i Helsingfors.`; 
+//Man kan loopa igenom ett objekt genom at tkonvertera till Array med Object.keys()
+            for (key of Object.keys(curWeather)){
+                console.log(`${key}: ${curWeather[key]}`)
+            }
+        }getWeather();
+    </script>
+        
+
+    <script>
+        async function getWeather2(lat, lon, city){
+            const resp = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current_weather=true&windspeed_unit=ms`)
+            const weather = await resp.json();
+            const curWeather = weather.current_weather;
+            
+            document.querySelector('#'+city).innerHTML += `
+            Det är ${curWeather.temperature}&deg;C och det blåser
+             ${curWeather.windspeed} m/s i ${city}.`; 
+
+            for (key of Object.keys(curWeather)){
+                console.log(`${key}: ${curWeather[key]}`)
+            }
+        
+        
+        }
+        getWeather2(60, 24, 'Esbo');
+        getWeather2(40, 2, 'Barcelona');
+
     </script>
 
 
